@@ -9,7 +9,7 @@
 
 <div class="row mt-4">
   <div class="col-md-5">
-    <h5>CUSTOMERS</h5>
+    <h5 class="text-center">CUSTOMERS</h5>
     <hr>
       <div class="card card-body">
       <a class="btn btn-sm btn-primary" href="">Add Customer</a>
@@ -17,23 +17,22 @@
           <tr>
           <th>Customer</th>
           <th>Phone</th>
+          <th></th>
         </tr>
 {% for customer in customers %}
 <tr>
   <td>{{ customer.name }}</td>
   <td>{{ customer.phone }}</td>
+  <td><a href="{% url 'customer-detail' customer.id %}" class="btn btn-sm btn-info">View</a>
 </tr>
 {% endfor %}
         </table>
       </div>
   </div>
   <div class="col-md-7">
-    <h5>LAST 5 ORDERS</h5>
+    <h5 class="text-center">LAST 5 ORDERS</h5>
     <hr>
       <div class="card card-body">
-        <a class="btn btn-primary btn-sm btn-block" href="">
-Create Order
-      </a>
       <table class="table table-sm">
         <tr>
 <th>Product</th>
@@ -47,8 +46,8 @@ Create Order
           <td>{{order.product}}</td>
           <td>{{order.date_created}}</td>
           <td>{{order.status}}</td>
-          <td><a class="btn btn-outline-primary"><b>Update</b></a></td>
-          <td><a class="btn btn-outline-danger"><b>Delete</b></a></td>
+          <td><a class="btn btn-sm btn-primary" href="{% url 'order-update' order.id %}"><b>Update</b></a></td>
+          <td><a class="btn  btn-sm btn-danger" href="{% url 'order-delete' order.id %}"><b>Delete</b></a></td>
           </tr>
         {% endfor %}
       </table>

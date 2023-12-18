@@ -1,7 +1,9 @@
+from django.contrib.admin.options import messages
 from django.shortcuts import render
-from django.views.generic import DetailView
+from django.urls import reverse_lazy
+from django.views.generic import CreateView, DeleteView, DetailView, UpdateView
 from accounts.models import *
-
+from .forms import OrderForm
 
 def dashboard(request):
     orders = Order.objects.all()
@@ -40,3 +42,37 @@ class CustomerView(DetailView):
         context['orders'] = orders
         context['order_count'] = order_count
         return context
+
+
+class OrderCreateView(CreateView):
+    model = Order
+    form_class = OrderForm
+    template_name = 'accounts/order_form.html'
+    success_url = reverse_lazy('dashboard')
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        messages.success(self.request, 'Order has been created succefully!')
+        return super().form_valid(form)
+
+class OrderUpdateView(UpdateView):
+    model = Order
+    form_class = OrderForm
+    template_name = 'accounts/order_form.html'
+    success_url = reverse_lazy('dashboard')
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        messages.success(self.request, 'Order has been updated succefully!')
+        return super().form_valid(form)
+
+class OrderDeleteView(DeleteView):
+    model = Order
+    template_name = 'accounts/delete.html'
+    success_url = "/"
+
+    def test_func(self):
+        order = self.get_object()
+        if self.request.user == order.author:
+            return True
+        return False
