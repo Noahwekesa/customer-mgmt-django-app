@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 class Customer(models.Model):
     name = models.CharField(max_length=200, null=True)
-    phone = models.PositiveIntegerField(null=True)
+    phone = models.CharField(max_length=200, null=True)
     email = models.EmailField(max_length=200, null=True)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
 
@@ -34,9 +34,9 @@ class Product(models.Model):
 
 class Order(models.Model):
     STATUS = (
-        ('Pending', 'pending'),
+        ('Pending', 'Pending'),
         ('Out for delivery', 'Out for delivery'),
-        ('Delivery', 'Delivery'),
+        ('Delivered', 'Delivered'),
     )
     customer = models.ForeignKey(Customer, null=True, on_delete=models.SET_NULL)
     product = models.ForeignKey(Product, null=True, on_delete=models.SET_NULL) 

@@ -17,11 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from accounts.views import dashboard, products, customer
+from accounts.views import CustomerView, dashboard, products
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', dashboard, name='dashboard'),
     path('products/', products, name='products'),
-    path('customer', customer, name='customer'),
+    path('customer/<int:pk>/', CustomerView.as_view(), name='customer-detail'),
 ]
