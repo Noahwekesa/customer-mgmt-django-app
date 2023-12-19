@@ -1,0 +1,28 @@
+{% extends "accounts/base.html" %}
+
+{% load django_bootstrap5 %}
+
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% block content %}
+{% if user.is_authenticated %}
+
+<div class="text-center container">
+  <p> Your account doesn't have access to this page. To proceed,
+    <a href="{% url 'dashboard' %}"> click here to go back to the dashboard</a>
+  </p>
+  {% else %}
+  <h1 class="text-center">Log In</h1>
+  <div class="col-sm-4 mx-auto">
+
+    <form method="post" class="form border shadow-lg p-5">
+      {% csrf_token %}
+      {% bootstrap_form form %}
+      <button type="submit" class="btn btn-primary">
+        Login
+      </button>
+    </form>
+  </div>
+</div>
+{% endif %}
+{% endblock content %}

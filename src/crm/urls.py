@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-
+from django.contrib.auth import views as auth_views
 from accounts.views import *
 
 urlpatterns = [
@@ -28,4 +28,8 @@ urlpatterns = [
     path('order/create/<int:pk>', createOrder, name='order-create'),
     path('order/update/<int:pk>/', OrderUpdateView.as_view(), name='order-update'),
     path('order/delete/<int:pk>/', OrderDeleteView.as_view(), name='order-delete'),
+    # login & Register
+    path('login/', auth_views.LoginView.as_view(template_name='accounts/login.html'), name='login'),
+    path('register/', register, name='register'),
+    path('logout/', logout_view, name='logout'),
 ]
