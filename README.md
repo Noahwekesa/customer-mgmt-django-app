@@ -1,11 +1,16 @@
 # ORDER MANAGEMENT SYSTEM/ CUSTOMER RELATIONSHIP SYSTEM(CRM) 
+
+
+
 This is a Django-based web application designed to help businesses manage customer orders, keep track of product stock, and maintain customer information efficiently. 
 
 ## Features
 
-- **Customer Order Management:** Track and manage customer orders efficiently.
-- **Product Stock Management:** Keep an organized record of product stock and inventory.
-- **Customer Information:** Maintain customer profiles and information for better customer relationship management.
+
+- **Customer Order Management:** Efficiently track and manage customer orders.
+- **Product Stock Tracking:** Keep an organized record of product stock and inventory.
+- **Customer Information Management:** Maintain detailed customer profiles for better customer relationship management.
+- **Date Filtering:** Filter orders based on the date of creation.
 
 ### Installation
 A step-by-step guide on how to install and set up your project. 
