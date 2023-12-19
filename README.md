@@ -1,5 +1,13 @@
 # ORDER MANAGEMENT SYSTEM/ CUSTOMER RELATIONSHIP SYSTEM(CRM) 
 
+DASHBOARD - Displays information of ordes placed and customer details
+![alt text](https://github.com/Noahwekesa/customer-mgmt-django-app/blob/master/screenshots/Dashboard.png)
+
+LOGIN
+![alt text](https://github.com/Noahwekesa/customer-mgmt-django-app/blob/master/screenshots/Login.png)
+
+customer details
+![alt text](https://github.com/Noahwekesa/customer-mgmt-django-app/blob/master/screenshots/customer1.png)
 
 
 This is a Django-based web application designed to help businesses manage customer orders, keep track of product stock, and maintain customer information efficiently. 
