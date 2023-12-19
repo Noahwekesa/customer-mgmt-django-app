@@ -12,18 +12,18 @@
     <h5 class="text-center">CUSTOMERS</h5>
     <hr>
       <div class="card card-body">
-      <a class="btn btn-sm btn-primary" href="">Add Customer</a>
-        <table class="table table-sm">
-          <tr>
+      <a class="m-4 btn btn-sm btn-primary" href="">Add Customer</a>
+        <table class="table table-sm table-bordered border-black text-center">
+          <tr class="table-dark">
           <th>Customer</th>
           <th>Phone</th>
-          <th></th>
+          <th>Action</th>
         </tr>
 {% for customer in customers %}
 <tr>
   <td>{{ customer.name }}</td>
   <td>{{ customer.phone }}</td>
-  <td><a href="{% url 'customer-detail' customer.id %}" class="btn btn-sm btn-info">View</a>
+  <td><a href="{% url 'customer-detail' customer.id %}" class="btn btn-sm btn-primary">View</a>
 </tr>
 {% endfor %}
         </table>
@@ -33,8 +33,8 @@
     <h5 class="text-center">LAST 5 ORDERS</h5>
     <hr>
       <div class="card card-body">
-      <table class="table table-sm">
-        <tr>
+      <table class="table table-sm table-bordered border-black">
+        <tr class="table-dark">
 <th>Product</th>
           <th>Date Ordered</th>
           <th>Status</th>

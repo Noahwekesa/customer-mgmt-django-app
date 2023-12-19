@@ -1,5 +1,5 @@
 from django.contrib.admin.options import messages
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DeleteView, DetailView, UpdateView
 from accounts.models import *
@@ -42,19 +42,26 @@ class CustomerView(DetailView):
         context['orders'] = orders
         context['order_count'] = order_count
         return context
-
-
+''''
 class OrderCreateView(CreateView):
     model = Order
     form_class = OrderForm
     template_name = 'accounts/order_form.html'
     success_url = reverse_lazy('dashboard')
 
-    def form_valid(self, form):
-        form.instance.author = self.request.user
-        messages.success(self.request, 'Order has been created succefully!')
-        return super().form_valid(form)
+    '''
+def createOrder(request, pk):
+    customer = Customer.objects.get(id=pk)
+    form = OrderForm(initial={'customer': customer})
+    if request.method == 'POST':
+        form = OrderForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('dashboard')
+    context = {'form': form}
+    return render(request, 'accounts/order_form.html', context)
 
+# update order class based view
 class OrderUpdateView(UpdateView):
     model = Order
     form_class = OrderForm
@@ -69,7 +76,7 @@ class OrderUpdateView(UpdateView):
 class OrderDeleteView(DeleteView):
     model = Order
     template_name = 'accounts/delete.html'
-    success_url = "/"
+    success_url = reverse_lazy('dashboard')
 
     def test_func(self):
         order = self.get_object()

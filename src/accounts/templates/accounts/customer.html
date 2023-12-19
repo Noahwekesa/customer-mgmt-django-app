@@ -6,7 +6,7 @@
   </div>
 <div class="container">
   <div class="row mb-5">
-    <div class="card" style="width: 18rem;">
+    <div class="card shadow-lg" style="width: 18rem;">
       <div class="card-body">
         <h5 class="card-title">Customer Information:</h5>
         <h6 class="card-subtitle mb-2 text-body-secondary">
@@ -19,15 +19,19 @@
       </div>
     </div>
     <div class="col-sm-6">
-      <div class="card">
+      <div class="card shadow-lg">
         <div class="card-body">
-          <h5 class="card-title">Total Orders</h5>
+          <h5 class="card-title text-center">Total Orders</h5>
           <hr>
-          <p class="card-text">{{order_count}}</p>
+          <p class="card-text text-center">{{order_count}}</p>
         </div>
       </div>
     </div>
 
+  </div>
+  <div class="m-5">
+  <a class="btn btn-sm btn-outline-primary shadow-lg" href="{% url 'order-create' customer.id %}">Place Order For This Customer</a>  
+  <hr>
   </div>
   <table class="table">
     <thead>
