@@ -21,11 +21,15 @@ step 3: Install virtural enviroment
 ```bash
 virtualenv .
 ```
-Step 3: Install dependencies 
+Step 4: Install dependencies 
 ```bash
 pip install -r requirements.txt 
 ```
-Step 4: Apply database migrations 
+step 5: Navigate to src
+```bash
+cd src
+```
+Step 5: Apply database migrations 
 ```bash
 python manage.py migrate 
 ```
