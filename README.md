@@ -10,20 +10,23 @@ This is a Django-based web application designed to help businesses manage custom
 ### Installation
 A step-by-step guide on how to install and set up your project. 
 Step 1: Clone the repository 
-````git clone https://github.com/noahwekesa/customer-mgmt-django-app.git 
-````
+```git clone https://github.com/noahwekesa/customer-mgmt-django-app.git 
+```
 Step 2: Navigate to the project directory 
-````cd your-project 
-````
+```cd customer-mgmt-django-app 
+```
+step 3: Install virtural enviroment
+```virtualenv .
+```
 Step 3: Install dependencies 
-````pip install -r requirements.txt 
-````
+```pip install -r requirements.txt 
+```
 Step 4: Apply database migrations 
-````python manage.py migrate 
-````
+```python manage.py migrate 
+```
 Step 5: Run the development server 
-````python manage.py runserver
-````
+```python manage.py runserver
+```
 Access the application in your web browser at http://localhost:8000/.
 
 ## Contributing
