@@ -1,7 +1,8 @@
-from django.contrib.admin.options import messages
+from django.contrib.admin.options import inlineformset_factory, messages
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DeleteView, DetailView, UpdateView
+from accounts.filters import OrderFilter
 from accounts.models import *
 from .forms import OrderForm
 
@@ -39,8 +40,13 @@ class CustomerView(DetailView):
         customer = self.get_object()
         orders = customer.order_set.all()
         order_count = orders.count()
+        
+        myFilter = OrderFilter(self.request.GET, queryset=orders)
+        orders = myFilter.qs
+
         context['orders'] = orders
         context['order_count'] = order_count
+        context['myFilter'] = myFilter
         return context
 ''''
 class OrderCreateView(CreateView):
@@ -51,14 +57,17 @@ class OrderCreateView(CreateView):
 
     '''
 def createOrder(request, pk):
+    OrderFormSet = inlineformset_factory(Customer, Order, fields=('product', 'status'), extra=10)
     customer = Customer.objects.get(id=pk)
-    form = OrderForm(initial={'customer': customer})
+    formset = OrderFormSet(queryset=Order.objects.none(), instance=customer)
+    #form = OrderForm(initial={'customer': customer})
     if request.method == 'POST':
-        form = OrderForm(request.POST)
-        if form.is_valid():
-            form.save()
+        #form = OrderForm(request.POST)
+        formset = OrderFormSet(request.POST, instance=customer)
+        if formset.is_valid():
+            formset.save()
             return redirect('dashboard')
-    context = {'form': form}
+    context = {'formset': formset}
     return render(request, 'accounts/order_form.html', context)
 
 # update order class based view

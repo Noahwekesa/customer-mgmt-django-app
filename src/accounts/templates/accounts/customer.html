@@ -33,15 +33,26 @@
   <a class="btn btn-sm btn-outline-primary shadow-lg" href="{% url 'order-create' customer.id %}">Place Order For This Customer</a>  
   <hr>
   </div>
-  <table class="table">
-    <thead>
+
+  <div class="row">
+    <div class="col">
+      <div class="card card-body">
+        <form method="get">
+          {{ myFilter.form.as_p }}
+          <button type="submit" class="btn btn-outline-primary btn-sm"> Search </button>
+        </form>
+      </div>
+    </div>
+</div>
+  <table class="table border-black table-bordered">
+    <thead class="table-black table-dark">
       <tr class="shadow-lg">
         <th scope="col">Product</th>
         <th scope="col">Category</th>
         <th scope="col">Date Ordered</th>
         <th scope="col">status</th>
         <th scope="col">Update</th>
-        <th scope="col">remove</th>
+        <th scope="col">Remove</th>
 
       </tr>
     </thead>
